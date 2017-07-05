@@ -183,9 +183,9 @@
 #'
 #' @param x A \code{src_organism} object
 #'
-#' @param filter Either NULL or a named list of vectors to be used to
-#'     restrict the output. Filter can also be a \code{\link{GRanges}} object
-#'     using "GRangesFilter" (see examples).
+#' @param filter Either NULL, an \code{AnnotationFilterList} object, or a named
+#'	   list of vectors to be used to restrict the output. Filter can also be a
+#'	   \code{\link{GRanges}} object using "GRangesFilter" (see examples).
 #'
 #' @return functions with \code{_tbl} return a \code{\link[tibble]{tibble}}
 #'     object, other methods return a \code{\link{GRanges}} or
@@ -202,8 +202,11 @@
 #' \dontrun{src <- src_ucsc("human")}
 #' src <- src_organism(dbpath=hg38light())
 #'
-#' ## transcript coordinates with filter in tibble format
+#' ## equivalent filters
+#' filters <- AnnotationFilterList(~ symbol == '
 #' filters <- list(SymbolFilter(c("A1BG", "CDH2")))
+#'
+#' ## transcript coordinates with filter in tibble format
 #' transcripts_tbl(src, filters)
 #'
 #' transcripts_tbl(src, list(SymbolFilter("SNORD", "startsWith")))
